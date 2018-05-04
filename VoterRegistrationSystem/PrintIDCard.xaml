@@ -1,0 +1,13 @@
+﻿<Window x:Class="VoterRegistrationSystem.PrintIDCard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VoterRegistrationSystem"
+        mc:Ignorable="d"
+        Title="PrintIDCard" Height="463.376" Width="670.701" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <WebBrowser x:Name="browser" HorizontalAlignment="Left" Height="355" Margin="10,10,0,0" VerticalAlignment="Top" Width="643"/>
+        <Button x:Name="btnPrint" Content="Button" HorizontalAlignment="Center" Margin="0,382,0,0" VerticalAlignment="Top" Width="122" Click="btnPrint_Click"/>
+    </Grid>
+</Window>

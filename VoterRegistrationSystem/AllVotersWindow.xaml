@@ -1,0 +1,83 @@
+﻿<Window x:Class="VoterRegistrationSystem.AllVotersWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VoterRegistrationSystem"
+        mc:Ignorable="d" 
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"  
+        FontFamily="Roboto"
+        Title="All Voters" Height="720" Width="1200" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="130"/>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="0"/>
+            <ColumnDefinition Width="40*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="38"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="197*"/>
+            <RowDefinition Height="21*"/>
+        </Grid.RowDefinitions>
+        <Border BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="0,0,0,2" Grid.Column="1" Margin="0,0,0,4" Grid.Row="1" Grid.RowSpan="1" Grid.ColumnSpan="6">
+            <TextBlock x:Name="headerTextBlock" TextWrapping="Wrap" Text="Search" VerticalAlignment="Center" FontSize="16" HorizontalAlignment="Left" />
+        </Border>
+        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0" Grid.ColumnSpan="6">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <StackPanel Width="70" Margin="-30,0,20,0" >
+                    <Image Source="Resources/arm.png" />
+                </StackPanel>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="FEDERAL REPUBLIC OF NIGERIA" FontSize="22" FontWeight="Bold" Margin="0,0,0,5" VerticalAlignment="Center" />
+                    <TextBlock Text="Voter's Register" FontSize="17" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+        <DataGrid x:Name="dataGrid" ItemsSource="{Binding}" IsReadOnly="True" Margin="0,3,0,10" HeadersVisibility="Column" CanUserAddRows="False" AutoGenerateColumns="False" MouseDoubleClick="dataGrid_MouseDoubleClick" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="6">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding VoterID}" ClipboardContentBinding="{x:Null}" Header="Voter ID"/>
+                <DataGridTextColumn Binding="{Binding VoterGuid}" ClipboardContentBinding="{x:Null}" Header="Voter Generic User ID"/>
+                <DataGridTextColumn Binding="{Binding FirstName}" ClipboardContentBinding="{x:Null}" Header="First Name"/>
+                <DataGridTextColumn Binding="{Binding Surname}" ClipboardContentBinding="{x:Null}" Header="Surname"/>
+                <DataGridTextColumn Binding="{Binding OtherNames}" ClipboardContentBinding="{x:Null}" Header="Other Names"/>
+                <DataGridTextColumn Binding="{Binding Sex.SexTitle}" ClipboardContentBinding="{x:Null}" Header="Gender"/>
+                <DataGridTextColumn Binding="{Binding MaritalStatus.StatusTitle}" ClipboardContentBinding="{x:Null}" Header="Marital Status"/>
+                <DataGridTextColumn Binding="{Binding PhoneNumber}" Header="Phone Number"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock x:Name="textBlock" Grid.Column="1" Margin="0,9,9,9" Grid.Row="2" TextWrapping="Wrap" Text="Name" VerticalAlignment="Center"/>
+        <TextBlock x:Name="textBlock_Copy" Grid.Column="5" Margin="0,9,10,9" Grid.Row="3" TextWrapping="Wrap" Text="Registration Area" VerticalAlignment="Center"/>
+        <TextBlock x:Name="textBlock_Copy1" Grid.Column="3" Margin="0,9,10,9" Grid.Row="3" TextWrapping="Wrap" Text="LGA" VerticalAlignment="Center"/>
+        <TextBlock x:Name="textBlock_Copy2" Grid.Column="1" Margin="0,9,10,9" Grid.Row="3" TextWrapping="Wrap" Text="State" VerticalAlignment="Center"/>
+        <TextBlock x:Name="textBlock_Copy3" Grid.Column="1" Margin="0,9,10,9" Grid.Row="4" TextWrapping="Wrap" Text="Polling Unit" VerticalAlignment="Center"/>
+        <TextBlock x:Name="textBlock_Copy4" Grid.Column="3" Margin="0,9,10,9" Grid.Row="2" TextWrapping="Wrap" Text="Address" VerticalAlignment="Center"/>
+        <TextBlock x:Name="textBlock_Copy5" Grid.Column="5" Margin="0,9,10,9" Grid.Row="2" TextWrapping="Wrap" Text="Phone Number" VerticalAlignment="Center"/>
+        <TextBox x:Name="nametextBox" Grid.Column="2" Margin="0,5,10,4" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        <TextBox x:Name="phoneNumbertextBox" Grid.Column="6" Margin="0,5,0,4" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        <TextBox x:Name="addresstextBox" Grid.Column="4" Margin="0,5,10,4" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center"/>
+        <ComboBox x:Name="statecomboBox" DisplayMemberPath="StateName" ItemsSource="{Binding}" Grid.Column="2" Margin="0,5,10,5" Grid.Row="3" SelectionChanged="statecomboBox_SelectionChanged" VerticalAlignment="Center"/>
+        <ComboBox x:Name="wardcomboBox" Grid.Column="6" Margin="0,5" DisplayMemberPath="WardName" ItemsSource="{Binding}" Grid.Row="3" SelectionChanged="wardcomboBox_SelectionChanged"  VerticalAlignment="Center"/>
+        <ComboBox x:Name="lgacomboBox" Grid.Column="4" DisplayMemberPath="LgaName" ItemsSource="{Binding}" Margin="0,5,10,5" Grid.Row="3" SelectionChanged="lgacomboBox_SelectionChanged"  VerticalAlignment="Center"/>
+        <ComboBox x:Name="pollingunitcomboBox" Grid.Column="2" DisplayMemberPath="PollingUnitName" ItemsSource="{Binding}" Margin="0,5,10,5" Grid.Row="4" VerticalAlignment="Center"/>
+        <Border BorderBrush="{StaticResource PrimaryHueDarkBrush}" BorderThickness="0,0,0,2" Margin="0,0,0,10" Grid.ColumnSpan="6" Grid.Column="1" Grid.Row="5" VerticalAlignment="Bottom">
+        </Border>
+        <Button x:Name="btnSearch" Content="Search" Grid.Column="3" HorizontalAlignment="Left" Margin="70,5,0,0" Grid.Row="4" Grid.RowSpan="2" VerticalAlignment="Top" Width="119" Click="btnSearch_Click" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnCancel" Content="Cancel" Grid.Column="4" HorizontalAlignment="Center" Margin="93,5,0,0" Grid.Row="4" Grid.RowSpan="2" VerticalAlignment="Top" Width="120" Click="btnCancel_Click"/>
+    </Grid>
+</Window>
